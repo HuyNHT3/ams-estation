@@ -1,4 +1,4 @@
-package com.example.amsestation.staff;
+package com.example.amsestation.users;
 
 public class User {
     private Long id;
