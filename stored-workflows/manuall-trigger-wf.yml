@@ -1,9 +1,0 @@
-name: Workflows triggered manually
-on:
-  workflow_dispatch:
-
-jobs:
-  echo-string:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo " it was triggered from another workflows"
