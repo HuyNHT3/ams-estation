@@ -1,13 +1,23 @@
-name: First workflows
-on: [push]
+#name: First workflows
+#on: [push]
+#
+#jobs:
+#  run-shell-commands:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: echo a string
+#        run: echo "Hello world"
+#      - name: Multiline Command
+#        run: |
+#          node -v
+#          npm -v
+
+name: Workflows triggered manually
+on:
+  workflow_dispatch:
 
 jobs:
-  run-shell-commands:
+  echo-string:
     runs-on: ubuntu-latest
     steps:
-      - name: echo a string
-        run: echo "Hello world"
-      - name: Multiline Command
-        run: |
-          node -v
-          npm -v
+      - run: echo " it was triggered from another workflows"
