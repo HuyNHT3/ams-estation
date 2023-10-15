@@ -1,0 +1,11 @@
+name: Workflows run base on another
+on:
+  workflow_run:
+    workflows: [first-workflows]
+    type: [completed]
+
+jobs:
+  echo-string:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo " it was triggered from another workflows"
