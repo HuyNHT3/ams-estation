@@ -14,6 +14,7 @@ public class Vocabulary {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private final Long id;
+    private final String idTopic;
     private final String name;
     private final String partOfSpeech;
     private final String meaning;
@@ -25,14 +26,16 @@ public class Vocabulary {
         partOfSpeech = null;
         meaning = null;
         example = null;
+        idTopic = null;
     }
 
-    public Vocabulary(Long id, String name, String partOfSpeech, String meaning, String example) {
+    public Vocabulary(Long id,String idTopic, String name, String partOfSpeech, String meaning, String example) {
         this.id = id;
         this.name = name;
         this.partOfSpeech = partOfSpeech;
         this.meaning = meaning;
         this.example = example;
+        this.idTopic = idTopic;
     }
 
     @Override
