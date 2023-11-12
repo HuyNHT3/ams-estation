@@ -1,24 +1,21 @@
-package com.example.amsestation.Entities;
+package com.example.amsestation.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 public class Vocabulary {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private final Long id;
-    private final String idTopic;
-    private final String name;
-    private final String partOfSpeech;
-    private final String meaning;
-    private final String example;
+    public final Long id;
+    public final String idTopic;
+    public final String name;
+    public final String partOfSpeech;
+    public final String meaning;
+    public final String example;
 
     public Vocabulary() {
         id = null;

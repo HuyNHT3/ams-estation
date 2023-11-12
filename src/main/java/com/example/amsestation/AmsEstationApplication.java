@@ -1,27 +1,20 @@
 package com.example.amsestation;
 
-import com.example.amsestation.Entities.Topic;
-import com.example.amsestation.Entities.Vocabulary;
-import com.example.amsestation.Model.TopicRepository;
-import com.example.amsestation.Model.VocabularyRepository;
+import com.example.amsestation.model.TopicRepository;
+import com.example.amsestation.model.VocabularyRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
-@SpringBootApplication
+@Configuration
+@ComponentScan
+@EnableAutoConfiguration
 public class AmsEstationApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AmsEstationApplication.class, args);
-	}
-
-	@Bean
-	public CommandLineRunner demo(VocabularyRepository vocabularyRepository, TopicRepository topic) {
-
-		return (args)->{
-		//	vocabularyRepository.save(new Vocabulary(1L,"Toeic1","test","verb","kiemtra","I test springboot"));
-			topic.save(new Topic(1L,"Toeic1",""));
-		};
 	}
 }

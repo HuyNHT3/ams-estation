@@ -1,6 +1,6 @@
-package com.example.amsestation.Model;
+package com.example.amsestation.model;
 
-import com.example.amsestation.Entities.Vocabulary;
+import com.example.amsestation.entities.Vocabulary;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

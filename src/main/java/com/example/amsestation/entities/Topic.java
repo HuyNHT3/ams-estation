@@ -1,4 +1,4 @@
-package com.example.amsestation.Entities;
+package com.example.amsestation.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
