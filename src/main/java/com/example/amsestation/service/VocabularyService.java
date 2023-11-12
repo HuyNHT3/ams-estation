@@ -34,4 +34,8 @@ public class VocabularyService {
         vocabularyResponseDTO.setVocabularyList(vocabularyDTOS);
         return vocabularyResponseDTO;
     }
+
+    public Vocabulary addNewVocabulary (Vocabulary vocabulary) {
+        return vocabularyRepository.save(vocabulary);
+    }
 }
