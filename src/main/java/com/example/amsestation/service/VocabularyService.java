@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VocabularyService {
@@ -35,7 +36,25 @@ public class VocabularyService {
         return vocabularyResponseDTO;
     }
 
+    public Vocabulary findByVocabularyId(Long vocabularyId) {
+        Optional<Vocabulary> vocabularyOpt = vocabularyRepository.findById(vocabularyId);
+        Vocabulary vocabulary = new Vocabulary();
+        if(vocabularyOpt.isPresent()) {
+            vocabulary = vocabularyOpt.get();
+        }
+        return vocabulary;
+    }
+
     public Vocabulary addNewVocabulary (Vocabulary vocabulary) {
         return vocabularyRepository.save(vocabulary);
+    }
+
+    public String deleteAVocabulary(Long vocabularyId) {
+        vocabularyRepository.deleteById(vocabularyId);
+        Optional<Vocabulary> vocabulary = vocabularyRepository.findById(vocabularyId);
+        if(vocabulary.isEmpty()) {
+            return "Deleted successfully a vocabulary with id: " + vocabularyId;
+        }
+        return "Problem when deleting a vocabulary with id: " + vocabularyId;
     }
 }
