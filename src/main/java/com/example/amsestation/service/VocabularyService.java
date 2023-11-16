@@ -57,4 +57,15 @@ public class VocabularyService {
         }
         return "Problem when deleting a vocabulary with id: " + vocabularyId;
     }
+
+    public String UpdateAVocabulary(Vocabulary vocabulary) {
+        vocabularyRepository.updateAVocabulary(
+                vocabulary.id,
+                vocabulary.idTopic,
+                vocabulary.name,
+                vocabulary.partOfSpeech,
+                vocabulary.meaning,
+                vocabulary.example);
+        return "Update a vocabulary Successfully";
+    }
 }

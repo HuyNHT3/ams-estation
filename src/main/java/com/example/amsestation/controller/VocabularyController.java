@@ -41,7 +41,7 @@ public class VocabularyController {
 
     }
 
-    @DeleteMapping({"delete/{vocabularyId}"})
+    @DeleteMapping({"/delete/{vocabularyId}"})
     public ResponseEntity deleteAVocabulary (@PathVariable("vocabularyId") Long vocabularyId) {
         Vocabulary vocabulary = vocabularyService.findByVocabularyId(vocabularyId);
         try {
@@ -61,5 +61,10 @@ public class VocabularyController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error when saving a vocabulary: " + e.getMessage());
         }
 
+    }
+    @PutMapping({"/update"})
+    public ResponseEntity updateAVocabulary (@RequestBody Vocabulary vocabulary) {
+        String message = vocabularyService.UpdateAVocabulary(vocabulary);
+        return ResponseEntity.status(HttpStatus.OK).body(message);
     }
 }
