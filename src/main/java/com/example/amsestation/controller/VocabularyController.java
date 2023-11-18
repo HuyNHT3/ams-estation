@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/vocabulary")
@@ -19,6 +22,13 @@ public class VocabularyController {
     @ResponseBody
     public VocabularyResponseDTO getAllVocabulary () {
         return  vocabularyService.getAllVocabulary();
+    }
+
+    @GetMapping("/search/{searchBy}")
+    @ResponseBody
+    public ResponseEntity searchAVocabulary (@PathVariable("searchBy") String searchBy, @RequestParam String searchValue) {
+        VocabularyResponseDTO vocabularyResponseDTO = vocabularyService.searchVocabulary(searchBy, searchValue);
+        return  ResponseEntity.status(HttpStatus.OK).body(vocabularyResponseDTO);
     }
 
     @PostMapping("/add")

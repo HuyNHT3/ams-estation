@@ -6,6 +6,7 @@ import java.util.List;
 
 public class VocabularyResponseDTO {
     private List<VocabularyDTO> vocabularies;
+    private String errorMessage;
 
     public VocabularyResponseDTO() {
     }
@@ -17,5 +18,13 @@ public class VocabularyResponseDTO {
 
     public void setVocabularyList(List<VocabularyDTO> vocabularies) {
         this.vocabularies = vocabularies;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

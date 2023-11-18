@@ -10,9 +10,11 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface VocabularyRepository extends CrudRepository<Vocabulary, Long> {
-    Vocabulary findById(long id);
-    List<Vocabulary> findByName(String name);
-    List<Vocabulary> findByPartOfSpeech(String partOfSpeech);
+//    @Modifying
+//    @Transactional
+//    @Query("select * from Vocabulary v where v.name = :name")
+//    Vocabulary findByName(@Param(value="name") String name);
+//    List<Vocabulary> findByPartOfSpeech(String partOfSpeech);
     @Modifying
     @Transactional
     @Query("update Vocabulary v " +
