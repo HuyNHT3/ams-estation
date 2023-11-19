@@ -77,21 +77,22 @@ public class VocabularyService {
             }
 
             //search by name
-//            if (searchBy.equals(VocabularySearchKey.name.toString())) {
-//                Vocabulary vocabulary = vocabularyRepository.findByName(searchValue);
-//                    VocabularyDTO vocabularyDTO = new VocabularyDTO(
-//                            vocabulary.id,
-//                            vocabulary.idTopic,
-//                            vocabulary.name,
-//                            vocabulary.partOfSpeech,
-//                            vocabulary.meaning,
-//                            vocabulary.example
-//                    );
-//                    vocabularyDTOS.add(vocabularyDTO);
-//                    vocabularyResponseDTO.setVocabularyList(vocabularyDTOS);
-//                    vocabularyResponseDTO.setErrorMessage("");
-//
-//            }
+            if (searchBy.equals(VocabularySearchKey.name.toString())) {
+                List<Vocabulary> vocabularyList = vocabularyRepository.findByName(searchValue);
+                for (Vocabulary vocabulary : vocabularyList) {
+                    VocabularyDTO vocabularyDTO = new VocabularyDTO(
+                            vocabulary.id,
+                            vocabulary.idTopic,
+                            vocabulary.name,
+                            vocabulary.partOfSpeech,
+                            vocabulary.meaning,
+                            vocabulary.example
+                    );
+                    vocabularyDTOS.add(vocabularyDTO);
+                }
+                vocabularyResponseDTO.setVocabularyList(vocabularyDTOS);
+                vocabularyResponseDTO.setErrorMessage("");
+            }
         } catch (Exception e) {
             vocabularyResponseDTO.setErrorMessage(
                     "Error when searching by: " + searchBy + ", " + e.getMessage()

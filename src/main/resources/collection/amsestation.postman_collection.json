@@ -7,107 +7,144 @@
 	},
 	"item": [
 		{
-			"name": "get-all-vocab",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8090/api/v1/vocabulary/all",
-					"host": [
-						"localhost"
-					],
-					"port": "8090",
-					"path": [
-						"api",
-						"v1",
-						"vocabulary",
-						"all"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update-a-vocab",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n            \"id\":253,\r\n            \"idTopic\": \"test update\",\r\n            \"name\": \"test update\",\r\n            \"partOfSpeech\": \"verb\",\r\n            \"meaning\": \"kiemtra\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "vocabulary",
+			"item": [
+				{
+					"name": "get-all-vocab",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/v1/vocabulary/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"vocabulary",
+								"all"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8090/api/v1/vocabulary/update",
-					"host": [
-						"localhost"
-					],
-					"port": "8090",
-					"path": [
-						"api",
-						"v1",
-						"vocabulary",
-						"update"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "add-a-vocab",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n            \"idTopic\": \"ielts3\",\r\n            \"name\": \"test\",\r\n            \"partOfSpeech\": \"verb\",\r\n            \"meaning\": \"kiemtra\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "update-a-vocab",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"id\":253,\r\n            \"idTopic\": \"test update\",\r\n            \"name\": \"test update\",\r\n            \"partOfSpeech\": \"verb\",\r\n            \"meaning\": \"kiemtra\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/v1/vocabulary/update",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"vocabulary",
+								"update"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8090/api/v1/vocabulary/add",
-					"host": [
-						"localhost"
-					],
-					"port": "8090",
-					"path": [
-						"api",
-						"v1",
-						"vocabulary",
-						"add"
-					]
+				{
+					"name": "add-a-vocab",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"idTopic\": \"ielts3\",\r\n            \"name\": \"test\",\r\n            \"partOfSpeech\": \"verb\",\r\n            \"meaning\": \"kiemtra\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/v1/vocabulary/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"vocabulary",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-a-vocab",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/v1/vocabulary/delete/202",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"vocabulary",
+								"delete",
+								"202"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search-a-vocabulary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/v1/vocabulary/search/name?searchValue=test",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"vocabulary",
+								"search",
+								"name"
+							],
+							"query": [
+								{
+									"key": "searchValue",
+									"value": "test"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "delete-a-vocab",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "localhost:8090/api/v1/vocabulary/delete/202",
-					"host": [
-						"localhost"
-					],
-					"port": "8090",
-					"path": [
-						"api",
-						"v1",
-						"vocabulary",
-						"delete",
-						"202"
-					]
-				}
-			},
-			"response": []
+			"name": "topic",
+			"item": []
 		}
 	]
 }
