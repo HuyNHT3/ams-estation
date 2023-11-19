@@ -14,7 +14,7 @@ public interface VocabularyRepository extends CrudRepository<Vocabulary, Long> {
     @Transactional
     @Query("select v from Vocabulary v where v.name = :name")
     List<Vocabulary> findByName(@Param(value="name") String name);
-    List<Vocabulary> findByPartOfSpeech(String partOfSpeech);
+ //   List<Vocabulary> findByPartOfSpeech(String partOfSpeech);
     @Modifying
     @Transactional
     @Query("update Vocabulary v " +
