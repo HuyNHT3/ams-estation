@@ -1,0 +1,17 @@
+version: "2.2"
+
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=thanhhuy123
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=thanhhuy123
+      - MYSQL_DATABASE=vocab_management
+    volumes:
+      - "./conf.d:/etc/mysql/conf.d:ro"
+    profiles:
+      - mysql

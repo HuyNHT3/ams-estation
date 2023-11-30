@@ -1,0 +1,19 @@
+name: Upload data for vocabulary management
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:
+  workflow_dispatch:
+    push:
+      branches:
+        - main
+
+jobs:
+  Upload-Data-To-S3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Deploy to S3
+        uses: ./.github/actions/upload_data
+        with:
+          account_id: "account id for github action"
+          bucket_name: "s3 bucket name"
