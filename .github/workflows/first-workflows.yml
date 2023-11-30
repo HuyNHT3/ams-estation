@@ -1,9 +1,0 @@
-name: manual triggered
-on:
-  workflow_dispatch:
-
-jobs:
-  log-info:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo $GITHUB_REF

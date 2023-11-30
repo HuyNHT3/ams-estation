@@ -1,0 +1,12 @@
+{
+  "vocabularyList": [
+    {
+      "id": 1,
+      "idTopic": "dev",
+      "name": "test db development",
+      "partOfSpeech": "verb",
+      "meaning": "kiemtra",
+      "example": null
+    }
+  ]
+}
