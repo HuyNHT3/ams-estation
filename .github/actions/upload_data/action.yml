@@ -13,9 +13,12 @@ runs:
     - name: Upload json data file
       shell: bash
       run: |
-        ls
-        cd src/main/resources/data
-        ls
+        echo "Update aws cli: "
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip -qq awscliv2.zip
+        sudo ./aws/install
+        aws --version
+        
         echo "account id: ${{inputs.account_id}}"
         echo "S3 bucket: ${{inputs.bucket_name}}"
         
