@@ -13,6 +13,9 @@ runs:
     - name: Upload json data file
       shell: bash
       run: |
+        ls
+        cd src/main/resources/data
+        ls
         echo "account id: ${{inputs.account_id}}"
         echo "S3 bucket: ${{inputs.bucket_name}}"
         
