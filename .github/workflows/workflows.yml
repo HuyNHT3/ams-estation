@@ -12,6 +12,13 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+
+      - name: Configure Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::998649062847:user/huynguyen
+          aws-region: us-east-1
+
       - name: Deploy to S3
         uses: ./.github/actions/upload_data
         with:
