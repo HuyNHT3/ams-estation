@@ -19,7 +19,7 @@ jobs:
       - name: Configure Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::998649062847:role/service-role/s3crr_role_for_demofirsts3
+          role-to-assume: arn:aws:iam::998649062847:role/github_workflow_for_s3
           aws-region: us-east-1
 
       - name: Deploy to S3
