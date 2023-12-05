@@ -20,3 +20,5 @@ docker run -it --rm -d -v mysql_estation_data:/var/lib/mysql \
 #run app with mysql db
 docker run --rm -d --name ams-server --network amsestation -e MYSQL_URL=jdbc:mysql://mysqlams/thanhhuy -p 8080:8080 amsestation
 
+# react app
+- node: >= 18
