@@ -9,11 +9,20 @@ on:
 jobs:
   Upload-Data-To-S3:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+
+      - name: Configure Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::998649062847:role/github_workflow_for_s3
+          aws-region: us-east-1
+
       - name: Deploy to S3
         uses: ./.github/actions/upload_data
         with:
-          account_id: "account id for github action"
-          bucket_name: "s3 bucket name"
+          bucket_name: "s3://e-tips-static-site/assests/data"

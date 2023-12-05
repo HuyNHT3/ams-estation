@@ -7,6 +7,14 @@
       "partOfSpeech": "verb",
       "meaning": "kiemtra",
       "example": null
+    },
+    {
+      "id": 2,
+      "idTopic": "test s3",
+      "name": "have just test s3",
+      "partOfSpeech": "phrase",
+      "meaning": "kiemtra",
+      "example": null
     }
   ]
 }

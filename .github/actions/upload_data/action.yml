@@ -1,9 +1,6 @@
 name: "Upload data to S3 bucket"
 description: "Upload data"
 inputs:
-    account_id:
-      description: "account id"
-      required: true
     bucket_name:
       description: "S3 bucket host"
       required: true
@@ -13,6 +10,8 @@ runs:
     - name: Upload json data file
       shell: bash
       run: |
-        echo "account id: ${{inputs.account_id}}"
-        echo "S3 bucket: ${{inputs.bucket_name}}"
-        
+        aws --version
+        cd src/main/resources/data
+        ls
+        echo "Uploading to S3 bucket: "
+        aws s3 sync . ${{inputs.bucket_name}}
