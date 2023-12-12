@@ -1,4 +1,4 @@
-import CheckVocabulary from "./component/CheckVocabulary";
+import CheckVocabulary from "./component/vocabulary-check/CheckVocabulary";
 
 function App() {
   return (

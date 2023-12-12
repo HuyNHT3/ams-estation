@@ -1,0 +1,14 @@
+@import '../../global.scss';
+
+*{
+    background-color: $back-color;
+}
+
+.vocab-body{
+    width: 95vw;
+    margin: auto;
+     
+    .content {
+      height: $frame-height;
+    }
+}
