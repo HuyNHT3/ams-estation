@@ -1,9 +1,5 @@
 @import '../../global.scss';
 
-*{
-    background-color: $back-color;
-}
-
 .vocab-body{
     width: 95vw;
     margin: auto;
@@ -11,4 +7,24 @@
     .content {
       height: $frame-height;
     }
+}
+
+.badge-alert {
+    background-color: $alert-color !important;
+    color: $fore-color !important;
+}
+
+.badge-primary {
+  background-color: $primary-color !important;
+  color: $fore-color !important;
+}
+
+.badge-warning {
+  background-color: $warning-color !important;
+  color: $fore-color !important;
+}
+
+.badge-info {
+  background-color: $info-color !important;
+  color: $fore-color !important;
 }
