@@ -1,36 +1,33 @@
-import axios from "axios";
-import { useMemo, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import './CheckVocabulary.scss';
 import { Card } from 'reactstrap';
 
-function getAllVocab() {
-  return axios.get("https://e-tips-static-site.s3.amazonaws.com/assests/data/vocabulary.json")
-}
-
 function replaceByDash(word) {
   const wordArray = word.split(' ');
-  console.log(wordArray.length);
+  let phrase = '';
   for(var i=0; i < wordArray.length; i++)
   {
-    let tem ="";
+    let temp = '';
     for(var j=0; j < wordArray[i].length; j++) {
-        if(j === 0 || j === (wordArray[i].length-1)) tem += word[i].charAt(j);
-        else tem += "_.";
+      if(j === 0 || j === (wordArray[i].length -1)) {
+        temp += wordArray[i].charAt(j) + ' ';
+      }
+      else {
+        temp += '_ ';
+      }
     }
-    console.log(tem);
-     console.log("-----------------")
+    phrase += temp +' ';
   }
-  return "";
+  return phrase.trim();
 }
-function CheckVocabularyItem() {
-  const [vocabList, setVocabList] = useState(null);
 
-  useMemo(() => {
-    getAllVocab().then((res) => {
-      setVocabList(res.data)
-    })
-  }, [vocabList === '']);
+function CheckVocabularyItem(
+  {
+    vocabList,
+    currentWord
+  }
+  ) {
+  
 
   return (
     <div className="App">
@@ -42,17 +39,16 @@ function CheckVocabularyItem() {
                     outline
                 >
                   <div>
-                    <span className="badge badge-alert">Topic: {vocabList.vocabularyList[0].idTopic}</span>
-                    <span className="badge badge-primary ms-2">Part Of Speech: {vocabList.vocabularyList[0].partOfSpeech}</span>
+                    <span className="badge badge-alert">Topic: {currentWord.idTopic}</span>
+                    <span className="badge badge-primary ms-2">Part Of Speech: {currentWord.partOfSpeech}</span>
                   </div>
                   <h1 className="fw-bolder ms-3 text-center">
-                    {replaceByDash(vocabList.vocabularyList[0].name)}
-                    {console.log(replaceByDash(vocabList.vocabularyList[0].name))}
+                    {replaceByDash(currentWord.name)}
                   </h1>
                 </Card>
 
 
-                  {vocabList.vocabularyList[0].meaning.map((item) => {
+                  {currentWord.meaning.map((item) => {
                     return (
                         <Card 
                         className="my-3"
