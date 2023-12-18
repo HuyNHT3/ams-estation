@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { getAllVocabulary } from '../../api/VocabularyDataSource';
 import './CheckVocabulary.scss'
 import CheckVocabularyItem from './CheckVocabularyItem';
@@ -21,7 +21,18 @@ function CheckVocabularyBody() {
         })
     }, [vocabList === '']);
 
+    function buildRightAnwser(data) {
+        setRightAnswer(data);
+    }
 
+    function buildWrongAnwser(data) {
+        setWrongAnswer(data);
+    }
+
+    function nextVocabulary() {
+        const index = vocabIndex + 1;
+        setVocabIndex(index);
+    }
 
     function handleOnKeyPress(e) {
         
@@ -31,27 +42,26 @@ function CheckVocabularyBody() {
 
             if (vocabIndex < vocabList.vocabularyList.length) {
                 if(userAnswer === currentWord.name) {
-                    var tempAnswer = rightAnswer;
-                            tempAnswer.push(currentWord);
-                            setRightAnswer(tempAnswer);
-                            setCount(count++);
+                    var tempRightAnswer = rightAnswer;
+                    tempRightAnswer.push(currentWord);
+                            buildRightAnwser(tempRightAnswer);
                             console.log("rightAnswer: " + JSON.stringify(rightAnswer));
                             console.log("count: " + count);
                  }
                  else {
-                    var tempAnswer = wrongAnswer;
-                            tempAnswer.push(currentWord);
-                            setWrongAnswer(tempAnswer);
-                            console.log("wrongAnswer: " + JSON.stringify(wrongAnswer))
+                    var tempWrongAnswer = wrongAnswer;
+                    tempWrongAnswer.push(currentWord);
+                    buildWrongAnwser(tempWrongAnswer);
+                        console.log("wrongAnswer: " + JSON.stringify(wrongAnswer))
                  }
 
                 if (vocabList) {
                     setCurrentWord(vocabList.vocabularyList[vocabIndex + 1]);
                 }
-                setVocabIndex(vocabIndex++);
+                nextVocabulary();
             }
 
-            if (vocabIndex === vocabList.vocabularyList.length) {
+            if (vocabIndex >= vocabList.vocabularyList.length) {
                 setIsFinish(true);
                 setRightAnswer([]);
                 setWrongAnswer([]);
@@ -64,7 +74,8 @@ function CheckVocabularyBody() {
             <div className='row content'>
                 <div className='col-12 shadow p-3 mb-3 bg-body rounded'>
                     <div className='text-end'>
-                        <span className='text-success fw-bolder'>Right: {count}</span> |
+                        count: {count}
+                        {!!rightAnswer && (<span className='text-success fw-bolder'>Right: {rightAnswer.length}</span>)} |
                         {!!wrongAnswer && (<span className='text-danger fw-bolder'> Wrong: {wrongAnswer.length}</span>)}
                     </div>
                     {!isFinish && (

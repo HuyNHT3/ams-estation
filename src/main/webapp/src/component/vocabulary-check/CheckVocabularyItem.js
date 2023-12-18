@@ -24,7 +24,8 @@ function replaceByDash(word) {
 function CheckVocabularyItem(
   {
     vocabList,
-    currentWord
+    currentWord,
+    isFinish
   }
   ) {
   
@@ -32,7 +33,7 @@ function CheckVocabularyItem(
   return (
     <div className="App">
       {
-          !!vocabList && (
+          !!vocabList && !isFinish && (
               <div>
                 <Card 
                     color="secondary"
