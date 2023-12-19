@@ -5,6 +5,7 @@ import CheckVocabularyItem from './CheckVocabularyItem';
 import { useMemo, useState } from "react";
 
 function CheckVocabularyBody() {
+    const RESTART = 'RESTART'
     let [vocabIndex, setVocabIndex] = useState(0);
     const [vocabList, setVocabList] = useState(null);
     let [currentWord, setCurrentWord] = useState(null);
@@ -12,14 +13,13 @@ function CheckVocabularyBody() {
     let [rightAnswer, setRightAnswer] = useState([]);
     let [wrongAnswer, setWrongAnswer] = useState([]);
     let [userAnswer, setUserAnswer] = useState('');
-    let [count, setCount] = useState(0);
 
     useMemo(() => {
         getAllVocabulary().then((res) => {
             setVocabList(res.data)
             setCurrentWord(res.data.vocabularyList[vocabIndex])
         })
-    }, [vocabList === '']);
+    }, [!vocabList]);
 
     function buildRightAnwser(data) {
         setRightAnswer(data);
@@ -34,38 +34,41 @@ function CheckVocabularyBody() {
         setVocabIndex(index);
     }
 
+    function resetPage() {
+        window.location.reload(true);
+    }
+
     function handleOnKeyPress(e) {
         
         if (e.key === 'Enter') {
-    
-             console.log("userAnswer: " + userAnswer);
+            
+            if(userAnswer.toLocaleUpperCase() === RESTART) {
+                resetPage();
+            }
 
             if (vocabIndex < vocabList.vocabularyList.length) {
-                if(userAnswer === currentWord.name) {
-                    var tempRightAnswer = rightAnswer;
-                    tempRightAnswer.push(currentWord);
-                            buildRightAnwser(tempRightAnswer);
-                            console.log("rightAnswer: " + JSON.stringify(rightAnswer));
-                            console.log("count: " + count);
-                 }
-                 else {
-                    var tempWrongAnswer = wrongAnswer;
-                    tempWrongAnswer.push(currentWord);
-                    buildWrongAnwser(tempWrongAnswer);
-                        console.log("wrongAnswer: " + JSON.stringify(wrongAnswer))
-                 }
+                if(userAnswer !== RESTART) {
+                    if(userAnswer.toLocaleUpperCase() === currentWord.name.toLocaleUpperCase()) {
+                        var tempRightAnswer = rightAnswer;
+                        tempRightAnswer.push(currentWord);
+                                buildRightAnwser(tempRightAnswer);
+                     }
+                     else {
+                        var tempWrongAnswer = wrongAnswer;
+                        tempWrongAnswer.push(currentWord);
+                        buildWrongAnwser(tempWrongAnswer);
+                     }
+                }
 
                 if (vocabList) {
                     setCurrentWord(vocabList.vocabularyList[vocabIndex + 1]);
                 }
                 nextVocabulary();
             }
-
-            if (vocabIndex >= vocabList.vocabularyList.length) {
+            if (vocabIndex >= vocabList.vocabularyList.length - 1) {
                 setIsFinish(true);
-                setRightAnswer([]);
-                setWrongAnswer([]);
             }
+            setUserAnswer('');
         }
     }
 
@@ -74,7 +77,6 @@ function CheckVocabularyBody() {
             <div className='row content'>
                 <div className='col-12 shadow p-3 mb-3 bg-body rounded'>
                     <div className='text-end'>
-                        count: {count}
                         {!!rightAnswer && (<span className='text-success fw-bolder'>Right: {rightAnswer.length}</span>)} |
                         {!!wrongAnswer && (<span className='text-danger fw-bolder'> Wrong: {wrongAnswer.length}</span>)}
                     </div>
@@ -82,10 +84,11 @@ function CheckVocabularyBody() {
                         <CheckVocabularyItem
                             vocabList={vocabList}
                             currentWord={currentWord}
+                            isFinish={isFinish}
                         />)
                     }
                     {!!isFinish && (
-                        <h1>Congratulation, you finshed !!!</h1>
+                        <h1 className='mt-5 text-center text-warning fw-bolder text-shadow'>Congratulation, you finshed. <br/> Please type "restart" for playing again !!!</h1>
                     )}
 
                 </div>
@@ -102,6 +105,7 @@ function CheckVocabularyBody() {
                             placeholder='When start checking progress for learning vocabulary, please typing word here, and press enter after finish typing!'
                             onKeyDown={handleOnKeyPress}
                             onChange={(e) => setUserAnswer(e.target.value)}
+                            value={userAnswer}
                         />
                     </div>
                 </div>

@@ -18,14 +18,12 @@ function replaceByDash(word) {
     }
     phrase += temp +' ';
   }
-  return phrase.trim();
+  return phrase.trim().toLocaleUpperCase();
 }
 
 function CheckVocabularyItem(
   {
-    vocabList,
-    currentWord,
-    isFinish
+    currentWord
   }
   ) {
   
@@ -33,7 +31,7 @@ function CheckVocabularyItem(
   return (
     <div className="App">
       {
-          !!vocabList && !isFinish && (
+          !!currentWord && (
               <div>
                 <Card 
                     color="secondary"
@@ -62,7 +60,7 @@ function CheckVocabularyItem(
                             {item.example.map((item) => {
                               return <div className="ms-5">
                                 <span className="badge badge-info me-1">Example</span>
-                                {item}
+                                {item.replace(currentWord.name.toLocaleLowerCase(), replaceByDash(currentWord.name).toLocaleLowerCase())}
                               </div>
                             })}
                           </div>
