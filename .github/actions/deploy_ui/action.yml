@@ -1,0 +1,23 @@
+name: "Deploy UI to S3 bucket"
+description: "Deploy UI"
+inputs:
+    bucket_name:
+      description: "Deploy UI to S3 bucket"
+      required: true
+runs:
+  using: composite
+  steps:
+    - name: Build UI component
+      shell: bash
+      run: |
+        node --version
+        cd src/main/webapp
+        npm run build
+    - name: Deploy UI component to S3
+      shell: bash
+      run: |
+        aws --version
+        cd build
+        ls
+        echo "Deploying to S3 bucket: ${{inputs.bucket_name}}"
+        aws s3 sync static ${{inputs.bucket_name}}
