@@ -12,6 +12,7 @@ runs:
       run: |
         node --version
         cd src/main/webapp
+        npm i
         npm run build
     - name: Deploy UI component to S3
       shell: bash
