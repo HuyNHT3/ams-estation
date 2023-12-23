@@ -2,10 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import { getAllVocabulary } from '../../api/VocabularyDataSource';
 import './CheckVocabulary.scss'
 import CheckVocabularyItem from './CheckVocabularyItem';
-import { useMemo, useState } from "react";
+import { useMemo, useState } from 'react';
+import ResultTable from './ResultTable';
 
 function CheckVocabularyBody() {
     const RESTART = 'RESTART'
+    const RESULT = 'RESULT'
+
     let [vocabIndex, setVocabIndex] = useState(0);
     const [vocabList, setVocabList] = useState(null);
     let [currentWord, setCurrentWord] = useState(null);
@@ -13,6 +16,7 @@ function CheckVocabularyBody() {
     let [rightAnswer, setRightAnswer] = useState([]);
     let [wrongAnswer, setWrongAnswer] = useState([]);
     let [userAnswer, setUserAnswer] = useState('');
+    let [isShowResult, setIsShowResult] = useState(false);
 
     useMemo(() => {
         getAllVocabulary().then((res) => {
@@ -37,6 +41,10 @@ function CheckVocabularyBody() {
     function resetPage() {
         window.location.reload(true);
     }
+    
+    function showResultTable() {
+        setIsShowResult(!isShowResult);
+    }
 
     function handleOnKeyPress(e) {
         
@@ -46,8 +54,12 @@ function CheckVocabularyBody() {
                 resetPage();
             }
 
-            if (vocabIndex < vocabList.vocabularyList.length) {
-                if(userAnswer !== RESTART) {
+            if(userAnswer.toLocaleUpperCase() === RESULT) {
+                showResultTable();
+            }
+
+            if(userAnswer.toLocaleUpperCase() !== RESTART && userAnswer.toLocaleUpperCase() !== RESULT) {
+                if (vocabIndex < vocabList.vocabularyList.length) {
                     if(userAnswer.toLocaleUpperCase() === currentWord.name.toLocaleUpperCase()) {
                         var tempRightAnswer = rightAnswer;
                         tempRightAnswer.push(currentWord);
@@ -58,17 +70,19 @@ function CheckVocabularyBody() {
                         tempWrongAnswer.push(currentWord);
                         buildWrongAnwser(tempWrongAnswer);
                      }
-                }
-
+               
                 if (vocabList) {
                     setCurrentWord(vocabList.vocabularyList[vocabIndex + 1]);
                 }
+
                 nextVocabulary();
             }
             if (vocabIndex >= vocabList.vocabularyList.length - 1) {
                 setIsFinish(true);
             }
             setUserAnswer('');
+
+            }
         }
     }
 
@@ -88,7 +102,8 @@ function CheckVocabularyBody() {
                         />)
                     }
                     {!!isFinish && (
-                        <h1 className='mt-5 text-center text-warning fw-bolder text-shadow'>Congratulation, you finshed. <br/> Please type "restart" for playing again !!!</h1>
+                        <h1 className='mt-5 text-center text-warning fw-bolder text-shadow'>Congratulation, you finshed. 
+                        <br/> Please type "restart" for playing again, and type "result" to see the right answers !!!</h1>
                     )}
 
                 </div>
@@ -110,6 +125,11 @@ function CheckVocabularyBody() {
                     </div>
                 </div>
             </div>
+            <ResultTable
+                isShowResult={isShowResult}
+                setIsShowResult={setIsShowResult}
+                rightAnswer={rightAnswer}
+            />
         </div>
     );
 }
