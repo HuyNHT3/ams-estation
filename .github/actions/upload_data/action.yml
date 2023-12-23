@@ -13,5 +13,5 @@ runs:
         aws --version
         cd src/main/resources/data
         ls
-        echo "Uploading to S3 bucket: "
+        echo "Uploading to S3 bucket: ${{inputs.bucket_name}}"
         aws s3 sync . ${{inputs.bucket_name}}
